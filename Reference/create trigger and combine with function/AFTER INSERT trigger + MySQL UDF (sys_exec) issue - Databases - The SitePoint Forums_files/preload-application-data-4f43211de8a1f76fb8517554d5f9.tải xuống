@@ -1,0 +1,2 @@
+!function(){var e=document.getElementById("data-preloaded");if(e){var a=require("preload-store").default,r=JSON.parse(e.dataset.preloaded);Object.keys(r).forEach(function(e){a.store(e,JSON.parse(r[e]))})}}();
+//# sourceMappingURL=https://discourse-cdn-sjc1.com/sitepoint/community/assets/preload-application-data-4f43211de8a1f76fb8517554d5f9476615a1073e596b45352abcc0f64a8301d2.js.map
