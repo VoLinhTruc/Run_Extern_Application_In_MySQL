@@ -1,0 +1,19 @@
+//check OS and version
+select @@version_compile_os, @@version_compile_machine;
+select @@plugin_dir;	// we can change the plugin dir in my.ini file
+
+//Download lib_mysqludf_sys
+https://github.com/rapid7/metasploit-framework/tree/master/data/exploits/mysql
+
+//Create function 
+CREATE FUNCTION sys_exec RETURNS int SONAME 'lib_mysqludf_sys_32.dll';
+CREATE FUNCTION sys_eval RETURNS string SONAME 'lib_mysqludf_sys_32.dll';
+
+//Test function
+SELECT sys_eval('ver');
+SELECT sys_exec('<python environment dir> <python script>');
+
+//Create databese, table and trigger to test out
+CREATE DATABASE db_test
+CREATE TABLE people (age INT, name text);
+CREATE TRIGGER agecheck BEFORE INSERT ON people FOR EACH ROW SET NEW.age=sys_exec('<python environment dir> <python script>');
